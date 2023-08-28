@@ -13,7 +13,7 @@ app.use(express.static('public'))
 
 //templating engine
 app.use(expressLayout)
-app.set('layout', './layout/main')
+app.set('layout', './layouts/main')
 app.set('view engine', 'ejs')
 
 app.use('/' , require('./server/route/main'))
