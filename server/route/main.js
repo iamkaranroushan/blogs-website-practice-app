@@ -14,4 +14,7 @@ router.get('/about' , (req, res)=>{
     res.render('about', {local});
 })
 
+router.get('/contact' , (req, res)=>{
+    res.render('contact', {local});
+})
 module.exports = router;
