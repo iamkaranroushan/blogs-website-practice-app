@@ -2,15 +2,15 @@ const express = require('express');
 const router = express.Router();
 const post = require('../models/post')
 
-
+const local = {
+    title: "node.js Blog",
+    description :"a blogs app"
+}
 
 router.get('' , async(req, res)=>{
 
     try {
-        const local = {
-            title: "node.js Blog",
-            description :"a blogs app"
-        }
+        
         let perPage = 10;
         let page = req.query.page || 1;
 
@@ -47,12 +47,25 @@ router.get('' , async(req, res)=>{
 // })
 
 
+router.get('/post/:id', async(req, res)=>{
+
+    try {
+        let slug = req.params.id;
+        const data = await post.findById({ _id: slug});
+        
+        const local = {
+            title: data.title,
+            description :"a blogs app"
+        }
 
 
 
-
-
-
+        res.render('post', {local, data});
+        
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 
