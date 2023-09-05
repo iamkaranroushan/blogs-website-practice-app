@@ -36,15 +36,25 @@ router.get('' , async(req, res)=>{
 })
 
 
-// router.get('' , async(req, res)=>{
+router.post('/search', async(req, res)=>{
 
-//     try {
-//         const data = await post.find();
-//         res.render('index', {local, data,});
-//     } catch (error) {
-//         console.log(error);
-//     }
-// })
+    try {
+
+        // const local = {
+        //     title: search,
+        //     description :"a blogs app"
+        // }
+
+        let searchTerm = req.body.searchTerm;
+
+        console.log(searchTerm)
+        // const data = await post.find();
+        res.send(searchTerm);
+    } catch (error) {
+        console.log(error);
+    }
+})
+
 
 
 router.get('/post/:id', async(req, res)=>{
