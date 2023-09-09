@@ -2,14 +2,16 @@ const express = require('express');
 const router = express.Router();
 const post = require('../models/post')
 
+
 const local = {
     title: "node.js Blog",
     description :"a blogs app"
-}
+} 
 
 router.get('' , async(req, res)=>{
 
     try {
+          
         
         let perPage = 10;
         let page = req.query.page || 1;
