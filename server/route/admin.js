@@ -139,7 +139,79 @@ router.get('/dashboard',authMiddleware, async (req, res) => {
   
   });
 
+  router.post('/add-post',authMiddleware, async (req, res) => {
+    try {
+      console.log(req.body)
 
+
+      try {
+        const newPost = new post({
+          title: req.body.title,
+          body:req.body.body
+        });
+
+        await post.create(newPost)
+        res.redirect('/dashboard')
+
+      } catch (error) {
+        console.log(error);    
+      }
+  
+    } catch (error) {
+      console.log(error);
+    }
+  
+  });
+
+  
+  router.put('/edit-post/:id',authMiddleware, async (req, res) => {
+    try {
+      await post.findByIdAndUpdate(req.params.id,{
+        title: req.body.title,
+        body:req.body.body,
+        updatedAt: Date.now()
+      })
+      res.redirect(`/edit-post/${req.params.id}`)
+  
+    } catch (error) {
+      console.log(error);
+    }
+  
+  });
+
+  router.get('/edit-post/:id',authMiddleware, async (req, res) => {
+
+    try {
+      const local = {
+        title: "Edit Post",
+        description :"a blogs app"
+    }
+
+
+      const data = await post.findOne({ _id : req.params.id })
+      res.render('admin/edit-post',{
+        data,
+        layout: adminLayout,
+        local
+      })
+  
+    } catch (error) {
+      console.log(error);
+    }
+  
+  });
+
+
+  router.delete('/delete-post/:id',authMiddleware, async (req, res) => {
+
+    try {
+      await post.deleteOne ({ _id : req.params.id })
+      res.redirect('/dashboard')
+    } catch (error) {
+      console.log(error);
+    }
+  
+  });
 
 
 
