@@ -312,6 +312,7 @@ svg path{
     right: 0;
     color: var(--gray);
     padding: 15px;
+    cursor: pointer;
   }
 
 
