@@ -3,13 +3,13 @@
     <nav class="header_nav">
         <ul>
             <li>
-                <a href="/" class="">Home</a>
+                <a href="/" class="<%= isActiveRoute('/', currentRoute) %>">Home</a>
             </li>
             <li>
-                <a href="/about" class="">about</a>
+                <a href="/about" class="<%= isActiveRoute('/about', currentRoute) %>">about</a>
             </li>
             <li>
-                <a href="/contact" class="">contact</a>
+                <a href="/contact" class="<%= isActiveRoute('/contact', currentRoute) %>">contact</a>
             </li>
         </ul>
     </nav>

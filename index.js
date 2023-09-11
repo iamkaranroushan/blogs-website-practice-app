@@ -7,7 +7,7 @@ const connectDB = require('./server/config/db');
 const cookieParser = require('cookie-parser');
 const MongoStore = require('connect-mongo');
 const session = require('express-session');
-
+const { isActiveRoute } = require('./server/helper/routeActive');
 
 
 const app = express();
@@ -47,7 +47,7 @@ app.use('/' , require('./server/route/main'));
 app.use('/' , require('./server/route/admin'));
 
 
-
+app.locals.isActiveRoute = isActiveRoute;
 
 
 

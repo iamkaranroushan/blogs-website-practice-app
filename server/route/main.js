@@ -3,14 +3,15 @@ const router = express.Router();
 const post = require('../models/post')
 
 
-const local = {
-    title: "node.js Blog",
-    description :"a blogs app"
-} 
+
 
 router.get('' , async(req, res)=>{
 
     try {
+        const local = {
+            title: "node.js Blog",
+            description :"a blogs app"
+        } 
           
         
         let perPage = 10;
@@ -25,11 +26,13 @@ router.get('' , async(req, res)=>{
         const count = await post.count();
         const nextPage = parseInt(page) + 1;
         const hasNextPage = nextPage <= Math.ceil(count / perPage);
+
         res.render('index', {
             local,
             data,
             current:page,
-            nextPage: hasNextPage ? nextPage : null
+            nextPage: hasNextPage ? nextPage : null,
+            currentRoute :'/'
         });
     
     } catch (error) {
@@ -78,12 +81,13 @@ router.get('/post/:id', async(req, res)=>{
         
         const local = {
             title: data.title,
-            description :"a blogs app"
+            description :"a blogs app",
+            
         }
 
 
 
-        res.render('post', {local, data});
+        res.render('post', {local, data, currentRoute :`/post/${slug}`});
         
     } catch (error) {
         console.log(error);
@@ -94,11 +98,19 @@ router.get('/post/:id', async(req, res)=>{
 
 
 router.get('/about' , (req, res)=>{
-    res.render('about', {local});
+    const local = {
+        title: "About",
+        description :"a blogs app",
+    }
+    res.render('about', {local, currentRoute :`/about`});
 })
 
 router.get('/contact' , (req, res)=>{
-    res.render('contact', {local});
+    const local = {
+        title: "Contact",
+        description :"a blogs app",
+    }
+    res.render('contact', {local, currentRoute :`/contact`});
 })
 
 // function insertPostData () {

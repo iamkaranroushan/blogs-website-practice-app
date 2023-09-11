@@ -26,7 +26,7 @@ body{
     margin: 0;
 }
 
-a { color: var(--gray); }
+a { color: var(--black); }
 h1 { font-size: var(--font-size-xl); }
 h2 { font-size: var(--font-size-lg); }
 h3 { font-size: var(--font-size-md); }
@@ -166,14 +166,14 @@ svg path{
 .header_nav ul a{
     padding: 10px;
     text-decoration: none;
-    color: var(--gray);
 }
 .header_nav ul a:hover{
     
     text-decoration: underline;
+    color: var(--gray);
 }
-.header_nav ul a:active{
-    color: black;
+.header_nav ul a.active{
+    color: var(--gray);
 }
 
 /* Author section */
