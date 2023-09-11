@@ -64,7 +64,8 @@ router.post('/search', async(req, res)=>{
         
         res.render("search",{
             data, 
-            local
+            local,
+            currentRoute: '/search'
         });
     } catch (error) {
         console.log(error);
@@ -94,6 +95,10 @@ router.get('/post/:id', async(req, res)=>{
     }
 })
 
+router.get('/login', ( req, res )=>{
+
+    res.render('admin/login', {currentRoute :`/admin`});
+})
 
 
 
